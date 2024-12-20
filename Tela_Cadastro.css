@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #F5E2C6; /*cor fundo */
+    font-family: poppins;
+   font-size: medium; /*tamanho da fonte medio*/
+   color: #6B4F30;
+   overflow-x: hidden;  /*evita rolagem de tela para o lado*/
+}
+
+.cadastro{
+    position: relative;
+    margin-top: 3%;
+    left: 35%;
+}
+label{
+    font-size: 25px;
+ }
+ 
+ input{
+     height: 5vh;
+     width: 20%;
+     border-radius: 25px;
+     background-color: #F4D6A1;
+     font-size: small;
+     font-family: Arial, Helvetica, sans-serif;
+     padding: 0 10px;
+    
+    
+ }
+ 
+button{
+
+    padding: 10px 20px;
+    width: 8%;
+    border-radius: 20px;
+    background-color: #F4D6A1; /* cor dentro do placeholder */
+    font-size: 16px; 
+    font-family: Arial, Helvetica, sans-serif; /* fonte do botao*/
+    cursor: pointer; /*cursor */
+    color: black;
+    position: relative;
+    left: 5%;
+    margin-top: -8px;
+}
+
+select{
+    height: 4vh;
+    width: 8%;
+    border-radius: 20px;
+    background-color: #F4D6A1; /* cor dentro do placeholder */
+    font-size: 16px; 
+    font-family: Arial, Helvetica, sans-serif; /* fonte do botao*/
+    cursor: pointer; /*cursor */
+    color: black;
+}
+
+@media (max-width: 1024px) {
+    .cadastro {
+        left: 20%; /* Reduz a margem lateral em telas médias */
+    }
+
+    input,
+    button,
+    select {
+        width: 40%; /* Aumenta a largura dos elementos */
+        font-size: medium; /* Ajusta o tamanho da fonte */
+    }
+}
+
+@media (max-width: 768px) {
+    .cadastro {
+        margin-top: 5%; /* Reduz o espaço superior */
+        left: 10%; /* Centraliza para telas pequenas */
+    }
+
+    input,
+    button,
+    select {
+        width: 80%; /* Campos e botões ocupam quase toda a largura */
+        font-size: large; /* Tamanho de fonte maior para dispositivos móveis */
+    }
+
+    label {
+        font-size: 20px; /* Reduz o tamanho das labels */
+    }
+}
+
+@media (max-width: 480px) {
+    .cadastro {
+        margin-top: 5%;
+        left: 5%; /* Centraliza mais ainda para telas menores */
+    }
+
+    input,
+    button,
+    select {
+        width: 90%; /* Quase 100% da largura da tela */
+        height: 6vh; /* Aumenta a altura para facilitar o clique */
+        font-size: large; /* Tamanho de fonte maior */
+    }
+
+    label {
+        font-size: 18px; /* Ajusta o tamanho das labels para telas pequenas */
+    }
+}

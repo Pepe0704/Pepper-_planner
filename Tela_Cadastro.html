@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Tela_Cadastro.css">
+    <title>Cadastro</title>
+</head>
+<body>
+    <form id="cadastro" method="POST" action="http://localhost:3000/cadastro">
+
+        <div class="cadastro"> 
+            <label for="nome">Nome Completo</label>
+            <br>
+            <input type="text" name="nome" id="nome" placeholder="Digite seu nome completo" required>
+            <br>
+
+            <label for="telefone">Digite seu telefone</label>
+            <br>
+            <!-- Adicionado o id="Telefone" aqui -->
+            <input type="text" name="telefone" id="telefone" placeholder="(XX) XXXXX-XXXX" required>
+            <br>
+
+            <label for="email">Email:</label>
+            <br>
+            <input type="email" name="email" id="email" placeholder="Entre com seu E-mail" required
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                title="Por favor, insira um endereço de e-mail válido (exemplo@dominio.com)">
+
+            <br>
+            <label for="data_nascimento">Data de Nascimento</label>
+            <br>
+            <input type="date" id="data_nascimento" name="data_nascimento" placeholder="Digite a sua data de Nascimento" required>
+            <br>
+            
+            <label for="genero">Gênero</label>
+            <br>
+            <!-- Adicionado o id="Genero" aqui -->
+            <select name="genero" id="genero">
+                <option value="Selecionar">Selecionar</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Não_informar">Não informar</option>
+            </select>
+            <br>
+            <label for="senha">senha:</label>
+            <br>
+            <input type="password" name="senha" id="senha" placeholder="Digite sua senha" 
+                   required autocomplete="current-password" 
+                   pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+                   <div class="password-requirements">
+                    <br>
+                    <p>A senha deve ter pelo menos:</p>
+                    <ul>
+                        <li>8 caracteres</li>
+                        <li>1 letra maiúscula</li>
+                        <li>1 letra minúscula</li>
+                        <li>1 número</li>
+                        <li>1 caractere especial (@$!%*?&)</li>
+                    </ul>
+                </div>
+            <br>
+            
+            <br>
+            <button type="submit" class="button">Cadastrar</button>
+        </div>
+     </form>
+     <script>
+        const telefoneInput = document.getElementById('telefone');
+    
+        telefoneInput.addEventListener('input', (event) => {
+          let valor = telefoneInput.value;
+    
+          // Remove tudo que não for número
+          valor = valor.replace(/\D/g, '');
+    
+          // Adiciona os parênteses em torno do DDD
+          if (valor.length > 2) {
+            valor = `(${valor.slice(0, 2)}) ${valor.slice(2)}`;
+          }
+    
+          // Adiciona o hífen após o 9º dígito
+          if (valor.length > 10) {
+            valor = `${valor.slice(0, 10)}-${valor.slice(10)}`;
+          }
+    
+          // Atualiza o campo de entrada com a máscara
+          telefoneInput.value = valor;
+        });
+      </script>
+<script src="TELACAD_VALID.JS"></script>
+<script src="TELACAD_FRONT.JS"></script>
+<script src="TELACAD_BACK.JS"></script>
+<script src="servidor.js"></script>
+</body>
+</html>

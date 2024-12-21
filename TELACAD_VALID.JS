@@ -1,5 +1,5 @@
 document.getElementById("cadastro").addEventListener("submit", function (event) {
-    event.preventDefault(); // Impede o envio automático do formulário
+    event.preventDefault(); 
 
     const form = event.target;
     const nome = form.nome.value.trim();
@@ -11,34 +11,34 @@ document.getElementById("cadastro").addEventListener("submit", function (event) 
 
     const erros = [];
 
-    // Validação do nome (mínimo 3 caracteres)
+    
     if (nome.length < 3) {
         erros.push("O nome deve ter pelo menos 3 caracteres.");
     }
 
-    // Validação do telefone
+    
     const telefoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
     if (!telefoneRegex.test(telefone)) {
         erros.push("O telefone deve estar no formato (XX) XXXXX-XXXX.");
     }
 
-    // Validação do e-mail
+    
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         erros.push("Por favor, insira um e-mail válido.");
     }
 
-    // Validação da data de nascimento (não pode ser futura)
+    
     if (!isDataNascimentoValida(dataNascimento)) {
         erros.push("A data de nascimento não pode ser futura ou inválida.");
     }
 
-    // Validação do gênero
+  
     if (genero === "Selecionar") {
         erros.push("Por favor, selecione um gênero.");
     }
 
-    // Validação da senha
+    
     const senhaRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!senhaRegex.test(senha)) {
         erros.push(
@@ -46,7 +46,7 @@ document.getElementById("cadastro").addEventListener("submit", function (event) 
         );
     }
 
-    // Exibe erros ou envia o formulário
+    
     if (erros.length > 0) {
         exibirErros(erros);
     } else {
@@ -55,15 +55,15 @@ document.getElementById("cadastro").addEventListener("submit", function (event) 
     }
 });
 
-// Função para validar a data de nascimento
+
 function isDataNascimentoValida(data) {
     const hoje = new Date();
     const dataNascimento = new Date(data);
 
-    return dataNascimento <= hoje; // Data deve ser igual ou anterior a hoje
+    return dataNascimento <= hoje; 
 }
 
-// Função para exibir erros na interface
+Função para exibir erros na interface
 function exibirErros(erros) {
     const listaErros = document.createElement("ul");
     listaErros.style.color = "red";
@@ -78,12 +78,11 @@ function exibirErros(erros) {
     const mensagensErro = document.getElementById("mensagens-erro");
 
     if (mensagensErro) {
-        mensagensErro.innerHTML = ""; // Limpa mensagens anteriores
+        mensagensErro.innerHTML = ""; 
         mensagensErro.appendChild(listaErros);
     } else {
         const divErros = document.createElement("div");
         divErros.id = "mensagens-erro";
         divErros.appendChild(listaErros);
-        form.prepend(divErros); // Adiciona as mensagens no topo do formulário
-    }
+        form.prepend(divErros); 
 }

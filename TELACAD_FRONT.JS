@@ -1,9 +1,8 @@
 document.getElementById("cadastro").addEventListener("submit", async function (event) {
-    event.preventDefault(); // Impede o envio automático do formulário
-
+    event.preventDefault(); 
     const form = event.target;
 
-    // Capturando os dados do formulário
+
     const dados = {
         nome: form.nome.value.trim(),
         telefone: form.telefone.value.trim(),
@@ -13,43 +12,43 @@ document.getElementById("cadastro").addEventListener("submit", async function (e
         senha: form.senha.value,
     };
 
-    // Validação (chamada da função do exemplo anterior)
+    
     const erros = validarFormulario(dados);
     if (erros.length > 0) {
         exibirErros(erros);
         return;
     }
 
-    // Enviando os dados ao servidor (requisição POST)
+    
     try {
         const resposta = await fetch("http://localhost:3000/cadastrar", {
             method: "POST", // Método HTTP
             headers: {
-                "Content-Type": "application/json", // Tipo de dado enviado
+                "Content-Type": "application/json", 
             },
-            body: JSON.stringify(dados), // Converte os dados para JSON
+            body: JSON.stringify(dados),
         });
 
         if (!resposta.ok) {
             throw new Error("Erro ao enviar os dados: " + resposta.statusText);
         }
 
-        const resultado = await resposta.json(); // Converte a resposta do servidor para JSON
+        const resultado = await resposta.json(); 
 
-        // Exibe mensagem de sucesso ou faz algo com o resultado
+        
         alert("Cadastro realizado com sucesso!");
         console.log("Resposta do servidor:", resultado);
 
-        // Reseta o formulário após o sucesso
+       
         form.reset();
     } catch (erro) {
-        // Trata erros de requisição
+        
         console.error("Erro na requisição:", erro.message);
         alert("Houve um problema ao cadastrar. Tente novamente.");
     }
 });
 
-// Função de validação (mantida do exemplo anterior)
+
 function validarFormulario(dados) {
     const erros = [];
 
@@ -87,7 +86,7 @@ function validarFormulario(dados) {
     return erros;
 }
 
-// Função de exibição de erros (mantida do exemplo anterior)
+
 function exibirErros(erros) {
     const listaErros = document.createElement("ul");
     listaErros.style.color = "red";
@@ -102,12 +101,12 @@ function exibirErros(erros) {
     const mensagensErro = document.getElementById("mensagens-erro");
 
     if (mensagensErro) {
-        mensagensErro.innerHTML = ""; // Limpa mensagens anteriores
+        mensagensErro.innerHTML = ""; 
         mensagensErro.appendChild(listaErros);
     } else {
         const divErros = document.createElement("div");
         divErros.id = "mensagens-erro";
         divErros.appendChild(listaErros);
-        form.prepend(divErros); // Adiciona as mensagens no topo do formulário
+        form.prepend(divErros); 
     }
 }

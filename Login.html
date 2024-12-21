@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Tela_Login.css">
+    <title>Login</title>
+</head>
+<body>
+    <h1>pepper's_planner</h1>
+    <br>
+    <div class="linha"></div>
+
+    <form id="login" method="POST" action="http://localhost:3000/login">
+    <div class="entrada">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Entre com seu E-mail" required>
+   
+        <br>
+        
+         <label for="senha">Senha:</label>
+         <br>
+         <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required autocomplete="current-password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+
+         <div class="password-requirements">
+          <br>
+          <p>A senha deve ter pelo menos:</p>
+          <ul>
+              <li>8 caracteres</li>
+              <li>1 letra maiúscula</li>
+              <li>1 letra minúscula</li>
+              <li>1 número</li>
+              <li>1 caractere especial (@$!%*?&)</li>
+          </ul>
+      </div>
+         
+     <br><br>
+           <button type="submit" class="button">Entrar</button>
+     
+        <br><br>
+        <div class="links">
+             <a href=""> Esqueceu sua senha ?</a>
+             <br>
+             <a href="Tela_Cadastro.html"> Clique para se cadastrar</a>>
+    </div>
+</form>
+
+<script src="login.js"></script>
+<script src="servidor.js"></script>
+<script src="valid.js"></script>
+
+</body>
+</html>

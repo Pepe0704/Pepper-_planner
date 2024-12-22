@@ -12,10 +12,12 @@ body{
    overflow-x: hidden;  /*evita rolagem de tela para o lado*/
 }
 
+
+
 .cadastro{
     position: relative;
-    margin-top: 3%;
-    left: 35%;
+    margin-top: 2%;
+    left: 40%;
 }
 label{
     font-size: 25px;

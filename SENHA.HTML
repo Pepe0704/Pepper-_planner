@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="SENHA.CSS">
+    <title>recup_senha</title>
+</head>
+<body>
+    <form id="senha" method="POST" action="http://localhost:3000/senha">
+
+        <div class="recup_senha">
+    
+            <label for="email">Confirme seu E-mail</label>
+            <br><br>
+    
+            <input type="email" name="email" id="email" placeholder="Digite seu E-mail" required autocomplete="username">
+            <br><br>
+    
+            <label for="nova-senha">Digite sua nova senha</label>
+            <br><br>
+            <input type="password" name="senha" id="nova-senha" placeholder="Digite sua senha" required autocomplete="current-password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+            <br><br>
+    
+            <label for="confirmar-senha">Confirme sua senha</label>
+            <br><br>
+            <input type="password" name="senha" id="confirmar-senha" placeholder="Confirme senha" required autocomplete="current-password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+            <div class="password-requirements">
+                <br>
+                <p>A senha deve ter pelo menos:</p>
+                <ul>
+                    <li>8 caracteres</li>
+                    <li>1 letra maiúscula</li>
+                    <li>1 letra minúscula</li>
+                    <li>1 número</li>
+                    <li>1 caractere especial (@$!%*?&)</li>
+                </ul>
+            </div>
+            <br><br>
+            
+            <button type="submit" class="button">Alterar senha</button>
+        </div>
+    
+    </form>
+    <script src="SENHAVALID.JS"></script>
+    <script src="SENHA_FRONT.JS"></script>
+    <script src="servidor.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-document.getElementById("cadastro").addEventListener("submit", function (event) {
+document.getElementById("/cadastro").addEventListener("submit", function (event) {
     event.preventDefault(); 
 
     const form = event.target;
@@ -63,7 +63,8 @@ function isDataNascimentoValida(data) {
     return dataNascimento <= hoje; 
 }
 
-Função para exibir erros na interface
+//Função para exibir erros na interface// 
+
 function exibirErros(erros) {
     const listaErros = document.createElement("ul");
     listaErros.style.color = "red";
@@ -85,4 +86,5 @@ function exibirErros(erros) {
         divErros.id = "mensagens-erro";
         divErros.appendChild(listaErros);
         form.prepend(divErros); 
+}
 }

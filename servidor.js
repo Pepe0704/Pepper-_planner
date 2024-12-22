@@ -77,6 +77,38 @@ app.post('/login', (req, res) => {
 });
 
 
+
+// Rota para alterar a senha
+app.post('/senha', (req, res) => {
+    const { email, senha } = req.body;
+
+
+    // Verificar se o e-mail está registrado no banco
+    connection.query('SELECT * FROM cadastro WHERE email = ?', [email], (err, results) => {
+        if (err) {
+            return res.status(500).json({ message: 'Erro ao processar a requisição' });
+        }
+
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'E-mail não encontrado.' });
+        }
+
+
+        // Atualizar a senha no banco de dados (senha simples)
+        connection.query('UPDATE cadastro SET senha = ? WHERE email = ?', [senha, email], (err) => {
+            if (err) {
+                return res.status(500).json({ message: 'Erro ao atualizar a senha' });
+            }
+
+
+            res.status(200).json({ message: 'Senha alterada com sucesso!' });
+        });
+    });
+});
+
+
+
 // Iniciar o servidor
 app.listen(3000, () => {
     console.log('Servidor rodando em http://localhost:3000');

@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #F5E2C6; /*cor fundo */
+    font-family: poppins;
+   font-size: medium; /*tamanho da fonte medio*/
+   color: #6B4F30;
+}
+
+.linha{
+    position: absolute; /* Posiciona a linha no lugar correto */
+    top: 20%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    width: 0.2%; /* Espessura da linha */
+    height: 70%; /* Altura da linha */
+    background-color: black; /* Cor da linha */
+    transform: translateX(-50%); /* Ajusta para que a linha fique centralizada */
+}
+    
+
+
+h1{
+    position: absolute;
+    top: 50%; 
+
+    left: 15%/*coloca a esquerda*/
+
+}
+
+.entrada {
+    top: 30%; 
+    position: absolute;
+    right: 25%/*coloca a direita*/
+}
+
+label{
+   font-size: 25px;
+}
+
+input{
+    height: 4.8vh;
+    width: 105%;
+    border-radius: 25px;
+    background-color: #F4D6A1;
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 10px;
+    
+}
+
+button{
+
+    height: 4vh;
+    width: 50%;
+    border-radius: 25px;
+    background-color: #F4D6A1; /* cor dentro do placeholder */
+    font-size: 16px; 
+    font-family: Arial, Helvetica, sans-serif; /* fonte do botao*/
+    cursor: pointer; /*cursor */
+    color: black;
+    position: relative;
+    left: 30%;
+   
+    
+}
+/* Ajustar
+.links{
+color: black;
+text-decoration: none; /* Remove o sublinhado */
+/*  color: inherit; /* Herda a cor do texto, ou defina uma cor específica */
+/*  outline: none
+}
+*/
+
+
+
+
+/* Responsividade para telas menores que 1024px */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 24px;
+        left: 10%; /* Ajusta a posição do título */
+    }
+
+    .entrada {
+        right: 15%; /* Ajusta a posição do formulário */
+    }
+
+    input,
+    button {
+        width: 80%; /* Ajusta a largura do input e do botão */
+        font-size: 14px; /* Reduz o tamanho da fonte */
+    }
+
+    .linha {
+        height: 60%; /* Reduz a altura da linha */
+    }
+}
+
+/* Responsividade para telas menores que 768px */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 20px; /* Ajusta a fonte do título */
+        left: 5%; /* Centraliza mais o título */
+    }
+
+    .entrada {
+        right: 10%; /* Ajusta a posição do formulário */
+    }
+
+    input,
+    button {
+        width: 90%; /* Faz os inputs e o botão ocuparem mais largura */
+        font-size: 16px; /* Aumenta a fonte para maior legibilidade */
+    }
+
+    .linha {
+        height: 50%; /* Ajusta a altura da linha */
+    }
+}
+
+/* Responsividade para telas muito pequenas (480px ou menos) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 18px; /* Ajusta ainda mais o tamanho da fonte */
+        left: 0; /* Centraliza o título */
+    }
+
+    .entrada {
+        right: 5%; /* Ajusta a posição do formulário */
+    }
+
+    input,
+    button {
+        width: 100%; /* Faz os inputs e botão ocuparem toda a largura */
+        height: 6vh; /* Aumenta a altura para facilitar o clique */
+        font-size: 18px; /* Aumenta o tamanho da fonte para telas pequenas */
+    }
+
+    .linha {
+        height: 40%; /* Ajusta a altura da linha para telas pequenas */
+    }
+}

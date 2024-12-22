@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="Tela_Cadastro.css">
+    <link rel="stylesheet" href="CADASTRO.css">
     <title>Cadastro</title>
 </head>
 <body>
     <form id="cadastro" method="POST" action="http://localhost:3000/cadastro">
 
         <div class="cadastro"> 
+          
             <label for="nome">Nome Completo</label>
             <br>
             <input type="text" name="nome" id="nome" placeholder="Digite seu nome completo" required>
@@ -89,9 +90,10 @@
           telefoneInput.value = valor;
         });
       </script>
-<script src="TELACAD_VALID.JS"></script>
-<script src="TELACAD_FRONT.JS"></script>
-<script src="TELACAD_BACK.JS"></script>
+
+    
+<script src="CAD_FRONT.JS"></script>
+<script src="CAD_VALID.JS"></script>
 <script src="servidor.js"></script>
 </body>
 </html>

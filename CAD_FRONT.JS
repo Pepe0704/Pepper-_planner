@@ -1,4 +1,4 @@
-document.getElementById("cadastro").addEventListener("submit", async function (event) {
+document.getElementById("/cadastro").addEventListener("submit", async function (event) {
     event.preventDefault(); 
     const form = event.target;
 
@@ -21,13 +21,14 @@ document.getElementById("cadastro").addEventListener("submit", async function (e
 
     
     try {
-        const resposta = await fetch("http://localhost:3000/cadastrar", {
-            method: "POST", // Método HTTP
+        const resposta = await fetch("http://localhost:3000/cadastro", {
+            method: "POST",
             headers: {
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(dados),
         });
+        
 
         if (!resposta.ok) {
             throw new Error("Erro ao enviar os dados: " + resposta.statusText);

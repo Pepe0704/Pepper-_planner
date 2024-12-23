@@ -1,12 +1,11 @@
+document.querySelector('#login').addEventListener('submit', async function (event) {
+    event.preventDefault(); // Impede o envio do formulário
 
-
-document.querySelector('login').addEventListener('submit', async function (event) {
-    event.preventDefault();
-
-    const email = document.querySelector('#email').value;
-    const senha = document.querySelector('#senha').value;
+    const email = document.querySelector('#email').value;  // Obtém o valor do email
+    const senha = document.querySelector('#senha').value;  // Obtém o valor da senha
 
     try {
+        // Envia a requisição para o backend
         const response = await fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: {
@@ -19,15 +18,10 @@ document.querySelector('login').addEventListener('submit', async function (event
         });
 
         if (response.ok) {
-            const data = await response.json();
-            alert('Login bem-sucedido');
-            console.log(data);
+            const data = await response.json(); // Recebe a resposta com o token
+            alert('Login bem-sucedido');  // Exibe o alerta de sucesso
+            console.log(data);  // Exibe os dados no console, você pode armazenar o token ou redirecionar o usuário
         } else {
-            const error = await response.json();
-            alert(error.message);
-        }
-    } catch (error) {
-        console.error('Erro ao fazer o login:', error);
-        alert('Erro ao fazer o login');
-    }
-});
+            const error = await response.json();  // Captura a mensagem de erro
+            if (error.message === "Cadastro não encontrado") {
+                alert("Cadastro não encontrado. Verifique seu e-mail e senha."); // Alerta caso não encontre o

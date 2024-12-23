@@ -26,17 +26,17 @@ connection.connect((err) => {
     console.log('Conectado ao banco de dados!');
 });
 
-// Rota para cadastrar dados (sem hash)
+// Rota para cadastrar dados (com redirecionamento para login)
 app.post('/cadastro', (req, res) => {
     const { nome, telefone, email, data_nascimento, genero, senha } = req.body;
 
     // Remover espaços extras na senha antes de salvar
     const senhaFormatada = senha.trim();
 
-    const query = `
+    const query = 
         INSERT INTO cadastro (nome, telefone, email, data_nascimento, genero, senha)
         VALUES (?, ?, ?, ?, ?, ?)
-    `;
+    ;
 
     connection.query(
         query,
@@ -46,12 +46,13 @@ app.post('/cadastro', (req, res) => {
                 console.error('Erro ao inserir dados:', err);
                 return res.status(500).send('Erro ao salvar os dados.');
             }
-            res.status(200).send('Dados cadastrados com sucesso!');
+            // Redirecionar para a página de login após o cadastro bem-sucedido
+            res.redirect('/login.html');
         }
     );
 });
 
-// Rota para fazer o login (sem hash)
+// Rota para fazer o login
 app.post('/login', (req, res) => {
     const { email, senha } = req.body;
 
@@ -62,26 +63,26 @@ app.post('/login', (req, res) => {
         }
 
         if (results.length === 0) {
-            return res.status(400).json({ message: 'E-mail não encontrado' });
+            // Se o e-mail não for encontrado, retorna mensagem de "Cadastro não encontrado"
+            return res.status(404).json({ message: 'Cadastro não encontrado' });
         }
 
         const senhaBanco = results[0].senha; // Senha salva no banco de dados
 
-        // Comparação das senhas com verificação detalhada
+        // Comparação das senhas
         if (senha.trim() === senhaBanco.trim()) {
+            // Login bem-sucedido
             return res.status(200).json({ message: 'Autenticação bem-sucedida' });
         } else {
+            // Se a senha estiver errada
             return res.status(400).json({ message: 'Senha incorreta' });
         }
     });
 });
 
-
-
 // Rota para alterar a senha
 app.post('/senha', (req, res) => {
     const { email, senha } = req.body;
-
 
     // Verificar se o e-mail está registrado no banco
     connection.query('SELECT * FROM cadastro WHERE email = ?', [email], (err, results) => {
@@ -89,11 +90,9 @@ app.post('/senha', (req, res) => {
             return res.status(500).json({ message: 'Erro ao processar a requisição' });
         }
 
-
         if (results.length === 0) {
             return res.status(404).json({ message: 'E-mail não encontrado.' });
         }
-
 
         // Atualizar a senha no banco de dados (senha simples)
         connection.query('UPDATE cadastro SET senha = ? WHERE email = ?', [senha, email], (err) => {
@@ -101,13 +100,15 @@ app.post('/senha', (req, res) => {
                 return res.status(500).json({ message: 'Erro ao atualizar a senha' });
             }
 
-
             res.status(200).json({ message: 'Senha alterada com sucesso!' });
         });
     });
 });
 
-
+// Rota de login simulada para teste de redirecionamento
+app.get('/login', (req, res) => {
+    res.sendFile(__dirname + '/login.html');
+});
 
 // Iniciar o servidor
 app.listen(3000, () => {

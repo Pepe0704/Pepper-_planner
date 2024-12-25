@@ -87,7 +87,7 @@ document.getElementById("cadastro").addEventListener("submit", async function (e
             }
 
             // Redireciona para a página de login após o sucesso
-            window.location.href = "/LOGIN.html";  // Redireciona para a página de login
+            window.location.href = 'LOGIN.html';  // Redireciona para a página de login
 
         } catch (erro) {
             console.error("Erro na requisição:", erro.message);

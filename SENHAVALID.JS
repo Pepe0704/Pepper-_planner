@@ -33,9 +33,10 @@ function validarFormulario(event) {
             // Exibir mensagem de sucesso ou erro
             alert(data.message || 'Senha alterada com sucesso!');
             
-            // Redirecionar para a página de login, se necessário
+            // Verificar se a alteração foi bem-sucedida e redirecionar para a página de login
             if (data.message === 'Senha alterada com sucesso!') {
-                window.location.href = 'LOGIN.html'; // Redireciona para a página de login
+                // Redireciona para a página de login (LOGIN maiúsculo)
+                window.location.href = 'login.html';  // Redirecionamento relativo para o arquivo 'login.html'
             }
         })
         .catch(error => {

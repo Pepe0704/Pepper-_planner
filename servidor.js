@@ -28,18 +28,38 @@ app.post('/cadastro', (req, res) => {
     const { nome, telefone, email, data_nascimento, genero, senha } = req.body;
     const senhaFormatada = senha.trim();
 
-    const query = `
-        INSERT INTO cadastro (nome, telefone, email, data_nascimento, genero, senha)
-        VALUES (?, ?, ?, ?, ?, ?)
+    // Verificar se o e-mail ou telefone já existe no banco
+    const verificaDuplicidade = `
+        SELECT * FROM cadastro WHERE email = ? OR telefone = ?
     `;
-    connection.query(query, [nome, telefone, email, data_nascimento, genero, senhaFormatada], (err, result) => {
+    connection.query(verificaDuplicidade, [email, telefone], (err, results) => {
         if (err) {
-            console.error('Erro ao inserir dados:', err);
-            return res.status(500).json({ message: 'Erro ao salvar os dados.' });
+            console.error('Erro ao verificar duplicidade:', err);
+            return res.status(500).json({ message: 'Erro ao processar a requisição.' });
         }
-        res.json({ message: 'Cadastro realizado com sucesso!' });
+
+        // Se encontrar um usuário com o mesmo e-mail ou telefone, retorna erro
+        if (results.length > 0) {
+            return res.status(400).json({
+                message: 'E-mail ou telefone já está cadastrado.'
+            });
+        }
+
+        // Se não houver duplicidade, realiza a inserção
+        const query = `
+            INSERT INTO cadastro (nome, telefone, email, data_nascimento, genero, senha)
+            VALUES (?, ?, ?, ?, ?, ?)
+        `;
+        connection.query(query, [nome, telefone, email, data_nascimento, genero, senhaFormatada], (err, result) => {
+            if (err) {
+                console.error('Erro ao inserir dados:', err);
+                return res.status(500).json({ message: 'Erro ao salvar os dados.' });
+            }
+            res.json({ message: 'Cadastro realizado com sucesso!' });
+        });
     });
 });
+
 
 
 // Rota para login
